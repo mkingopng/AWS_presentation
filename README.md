@@ -32,7 +32,7 @@
 
 6. deploy the lambda function using AWS CLI
 
-   for new dpeloyment
+   for new deployment
    ```bash
    cd python_lambda_package
    aws lambda create-function --function-name python-lambda \
@@ -55,3 +55,76 @@
    cat output.json
    ```
 
+------
+
+to do it in one block with the shell script:
+```bash
+sh aws_cli.sh
+```
+
+there is a lag so the following lines need to be run separately
+
+Update the function configuration
+```bash
+aws lambda update-function-configuration --function-name python-lambda --handler python_lambda.lambda_handler
+```
+
+verify the handler configuration
+```bash
+aws lambda get-function-configuration --function-name python-lambda
+```
+
+delete the existing function
+```bash
+aws lambda delete-function --function-name python-lambda
+```
+
+
+---
+
+# MARP presentation
+```bash
+marp PRESENTATION.md -o PRESENTATION.html
+```
+
+---
+# AWS Resources
+
+- S3
+- DynamoDB
+- Lambda
+- API gateway
+
+check API details for Rust api gateway
+```bash
+aws apigateway get-rest-api --rest-api-id 3si1yzcmgj
+
+```
+
+check API details for the Python api gateway
+```bash
+aws apigateway get-resources --rest-api-id 971yf2k3f2
+```
+
+Get resource details Rust
+```bash
+aws apigateway get-resources --rest-api-id <Rust_API_ID>
+```
+
+Get resource details Python
+```bash
+aws apigateway get-resources --rest-api-id <Python_API_ID>
+```
+
+Get method details
+```bash
+aws apigateway get-method --rest-api-id <Rust_API_ID> --resource-id <RESOURCE_ID> --http-method POST
+```
+
+
+Get method details
+```bash
+aws apigateway get-method --rest-api-id <Python_API_ID> --resource-id <RESOURCE_ID> --http-method POST
+```
+
+arn:aws:apigateway:ap-southeast-2:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-southeast-2:001499655372:function:python-lambda/invocations
