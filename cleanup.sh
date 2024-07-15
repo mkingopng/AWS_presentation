@@ -1,1 +1,0 @@
-rm python_lambda_package

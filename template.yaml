@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  AWS Serverless Application with Mangum and FastAPI.
+
+Resources:
+  MyFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: main.lambda_handler
+      Runtime: python3.12
+      CodeUri: .
+      Environment:
+        Variables:
+          S3_BUCKET_NAME: snakey-s3
+          DYNAMODB_TABLE: snakey-table
+      Events:
+        ProcessRequest:
+          Type: Api
+          Properties:
+            Path: /process-request
+            Method: post
+        RootRequest:
+          Type: Api
+          Properties:
+            Path: /
+            Method: get
+        HealthCheck:
+          Type: Api
+          Properties:
+            Path: /health
+            Method: get

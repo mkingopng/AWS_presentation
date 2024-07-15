@@ -21,7 +21,7 @@
 4. copy the `python_lambda.py` into the deployment package directory
    ```bash
    cd python_lambda_package
-   cp ./../src/python_lambda.py .
+   cp ./../src/main.py .
    ```
 
 5. create the deployment package zip file
@@ -128,3 +128,4 @@ aws apigateway get-method --rest-api-id <Python_API_ID> --resource-id <RESOURCE_
 ```
 
 arn:aws:apigateway:ap-southeast-2:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-southeast-2:001499655372:function:python-lambda/invocations
+
