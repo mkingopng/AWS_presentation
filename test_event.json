@@ -1,0 +1,14 @@
+{
+    "httpMethod": "POST",
+    "body": "{}",
+    "resource": "/process-request",
+    "path": "/process-request",
+    "requestContext": {
+        "resourcePath": "/process-request",
+        "httpMethod": "POST",
+        "path": "/process-request"
+    },
+    "headers": {
+        "Content-Type": "application/json"
+    }
+}

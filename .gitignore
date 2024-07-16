@@ -163,3 +163,4 @@ cython_debug/
 /data/
 /python_lambda_package/
 /python_lambda_test/
+/.aws-sam/

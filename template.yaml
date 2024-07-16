@@ -14,6 +14,7 @@ Resources:
         Variables:
           S3_BUCKET_NAME: snakey-s3
           DYNAMODB_TABLE: snakey-table
+      Role: arn:aws:iam::001499655372:role/Rust-vs-Python-project
       Events:
         ProcessRequest:
           Type: Api

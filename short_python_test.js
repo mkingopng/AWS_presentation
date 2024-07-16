@@ -1,6 +1,8 @@
 import http from 'k6/http';
 import { sleep, check } from 'k6';
 
+
+// test configuration
 export let options = {
   stages: [
     { duration: '1m', target: 10 },  // ramp-up to 10 users over 1 minute
@@ -9,8 +11,8 @@ export let options = {
   ],
 };
 
-// Correct URL to your API Gateway endpoint
-const url = 'https://971yf2k3f2.execute-api.ap-southeast-2.amazonaws.com/snakey_dev/python-resource';
+// correct URL to API Gateway endpoint
+const url = 'https://gnoqjcvs5c.execute-api.ap-southeast-2.amazonaws.com/snakey-dev';
 
 export default function () {
   let res = http.post(url, JSON.stringify({ key: 'value' }), {

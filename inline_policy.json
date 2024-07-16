@@ -1,0 +1,19 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject"
+            ],
+            "Resource": "arn:aws:s3:::snakey-s3/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:PutItem"
+            ],
+            "Resource": "arn:aws:dynamodb:ap-south-2:001499655372:table/snakey-table"
+        }
+    ]
+}
