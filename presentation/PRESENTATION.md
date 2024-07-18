@@ -53,8 +53,8 @@ Compilation:
 
 Concurrency:
   - Rust: Supports concurrency with native features like async/await without being limited by a Global Interpreter Lock (GIL).
-  - Python: Concurrency is limited by the GIL, which can prevent multiple 
-native threads from executing Python bytecodes simultaneously. There are ways around this constraint, but they generally involve leveraging another language like C, C++ or Rust
+  - Python: Concurrency is limited by the GIL, which can prevent multiple native threads from executing Python bytecodes simultaneously. 
+  - There are ways around this constraint, but they involve leveraging another language like C, C++, CUDA or Rust
 --> 
 
 ---
