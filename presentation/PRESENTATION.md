@@ -10,13 +10,14 @@ paginate: true
 <!--
 - I started learning Rust because i felt i would benefit from learning a low-level compiled langauge. 
 - I know that Computer Science students are taught C and C++ and while most don't use it, the teaching staff appear to think its an important way to understand how software works. 
-- I've been surprised at the range of applications for Rust and some of the claims being made. Its certainly a lot broader in applicability than i expected.
-- This presentation compares the performance of Rust vs Python for lambda functions on AWS. 
-- I use the K6 load test protocol as a basis for comparison. 
-- I was inspired by 2 other presentations. The references for which are referenced at the end of the presentation.
+- I've been surprised at the range of applications for Rust and some of the claims being made. 
+- Its certainly a lot broader in applicability than i expected. Lambda functions are an example
+- This presentation compares the performance of Rust vs Python for lambda functions on AWS.
 -->
 
 ---
+
+Rust focuses on safety and performance. It doesn't pretend to make things easy.
 
 # Rust History
 - **2006**: created by Graydon Hoare
@@ -34,7 +35,7 @@ paginate: true
 |-------------------|---------------------------------|-----------------------------------|
 | Compilation       | Compiled                        | Interpreted                       |
 | Concurrency       | Native concurrency support      | GIL                               |
-| Memory Management | No GC                           | GC                                |
+| Memory Management | No Garbage Collector            | Garbage Collector                 |
 | Performance       | Petaflop-level speed            | Slower in comparison              |
 | Error Handling    | Strict compile-time checks      | Dynamic typing and runtime checks |
 | Memory Safety     | Guaranteed memory safety        | Memory safety not guaranteed      |
@@ -43,75 +44,61 @@ paginate: true
 <!--
 Notes:
 Compilation:
-  - Rust: Compiled language that translates code into machine code before execution, resulting in high performance. Rust compilation is direct to machine code (unlike say Java). it doesn't require a JVM to run.
-  - Python: Interpreted language that executes code line-by-line, which is slower than compiled languages.
+  - Rust is a compiled language that translates code into machine code before execution.
+  - Rust compilation is direct to machine code 
+  - Unlike Java, another compiled language, Rust doesn't require a JVM to run.
+  - Python, an interpreted language executes code step-by-step.
+  - No pre-runtime translation takes place. Errors show up at runtime
+  - because of this, Python is slower than compiled languages.
 
 Concurrency:
   - Rust: Supports concurrency with native features like async/await without being limited by a Global Interpreter Lock (GIL).
   - Python: Concurrency is limited by the GIL, which can prevent multiple 
 native threads from executing Python bytecodes simultaneously. There are ways around this constraint, but they generally involve leveraging another language like C, C++ or Rust
-
-Memory Management:
-  - Rust: has no garbage collector. Instead it uses an ownership model that enforces rules at compile time to ensure safety. If your code generates garbage, it won't compile.
-  - Python: Uses garbage collection to manage memory, which can simplify development but introduces overhead.
-
-Performance:
-  - Rust: Known for its speed and efficiency, capable of achieving petaflop-level performance in some cases.
-  - Python: Generally slower due to its interpreted nature, but sufficient for many applications where development speed is prioritized.
-
-Error Handling:
-  - Rust: Enforces strict compile-time checks to catch errors early in the development process. No errors at run-time
-  - Python: Uses dynamic typing and runtime checks, which can lead to errors being found later in the execution process.
-
-Memory Safety
-  - Rust: Guarantees memory safety by enforcing strict rules through its 
-ownership model, preventing common bugs like null pointer dereferencing and buffer overflows.
-  - Python: Memory safety is not guaranteed, and issues like buffer overflows are less common but still possible in certain scenarios.
-
-Ownership Model:
-  - Rust: Uses a unique ownership model to manage memory, ensuring safety and performance without needing a garbage collector.
-  - Python: relies instead on garbage collection for memory management,  which is inefficient and creates the opportunity for errors
 --> 
 
 ---
 
+# visualising the difference between compiled and interpreted languages
+
+![Compiled vs Interpreted](./../data/lambda_screenshot.png)
+
+
 # Why is AWS investing in Rust?
-- Memory Safety [Reference]()
-- Performance [Reference]()
-- resource efficiency & Cost [Reference]()
-- Environment [Reference]()
+- Memory Safety
+- Performance
+- Resource efficiency & cost
+- Environment
+
+<!--
+- Memory Safety: Approx 70% of security vulnerabilities relate to memory 
+management issues. The promise of replacing C, C++ etc with a modern, 
+memory safe language alternative in AWS services is obviousy a big draw
+
+- Environment: Rust is a "greener" language than Python. 
+
+Broad adoption of Rust could reduce the energy consumption of compute by 50%
+-->
 
 ---
 # How is AWS using Rust?
 
 AWS has already deployed a number of projects that use Rust, including 
-  - Firecracker [Reference]()
-  - Bottlerocket [Reference]()
-  - AWS IoT Greengrass: [Reference]()
-  - Amazon Prime: [Reference]()
-  - Lambda Runtime: [Reference]()
-  - AWS SDK for Rust: [Reference]()
+  - Firecracker
+  - Bottlerocket
+  - AWS IoT Greengrass
+  - Amazon Prime
+  - Lambda Runtime
+  - AWS SDK for Rust
   - the last 2 are what interest us today
 
 <!--
-- Memory Safety: The promise of replacing C, C++ and others in AWS services with a modern, memory safe language
-
-- Environment: Rust is a "greener" language than Python. 
-
-Broad adoption of Rust could reduce the energy consumption of compute by 50%
-
-- AWS has already deployed a number of projects that use Rust, including 
-
+AWS has already deployed a number of projects that use Rust, including
   - Firecracker, a virtualization technology that powers AWS Lambda and Fargate
-
   - Bottlerocket, a Linux-based operating system that runs containers is partly written in Rust
-
   - AWS IoT Greengrass: a software that extends AWS cloud capabilities to local devices
-
-  - Amazon Prime: 
-
+  - Amazon Prime:
   - Lambda Runtime: AWS has developed Rust runtime support for AWS Lambda, enabling developers to write serverless functions in Rust. This leverages Rust’s performance and safety, making serverless applications faster and more reliable
-
   - AWS SDK for Rust: AWS has released an official SDK for Rust, enabling developers to build Rust applications that interact with AWS services.
   - the last 2 are what interest us today
 -->
@@ -125,51 +112,141 @@ Given the differences between the two languages, is this a fair comparison?
 <!--
 It's legitimate to ask if this is a fair comparison because Rust is pitched as a compiled systems-level programming language, while Python is an interpreted, general-purpose language. They are obviously two different animals
 
-I'd argue that it is a fair comparison in this context because Rust is being pitched by AWS as a potential replacement for Python in some cases, specifically for Lambda, as evidenced by the Rust Lambda Runtime and the Rust SDK.
+I'd argue that it is a fair comparison in this context because Rust is 
+being pitched by AWS as a potential replacement for Python in some cases, 
+specifically for Lambda, as evidenced by the Rust SDK, and the promotion 
+around it.
 -->
 
 ---
 
 # The Rust Sales Pitch
-Using Rust instead of Python (or TypeScript) to write your lambda functions will make them 
-- faster [Reference]()
-- more resource efficient [Reference]()
-- cheaper [Reference]()
-- more energy efficient [Reference]()
 
-[Reference]()
+Using Rust instead of Python (or TypeScript) to write your lambda functions will make them 
+- faster
+- more resource efficient
+- cheaper
+- "Green", ie much more energy efficient
+
+Sounds too good to be true? Thats kinda true. There are a number of caveats 
+that are important and seldom mentioned we'll talk about these at the end 
+of the presentation
 
 ---
 
 # The Test
 
-The choice of **K6** as a load testing method was pure "copy cat". I saw Illya Kavaliou's presentation earlier this year and thought it was a great idea. Why reinvent the wheel?
+I've written two lambda functions, one in Rust, one in Python. They do the same thing
+- generate a UUID
+- save it as a .txt file in an S3 bucket
+- enter it as a record into a DynamoDB table
+- we use K6 to test the performance of the two functions under a range of 
+  conditions
+
+Its intended to be a simple example that we can replicate easily
+
+[K6](https://k6.io/) is a free performance testing tool
+
+The choice of **K6** as a load testing method was inspired by a presentation i 
+saw earlier this year at the Serverless meetup. I thought it was a great idea. 
+Why reinvent the wheel?
 
 ---
 # The Code
 
+- look at the script for the Rust lambda function
+- compare with the Python script
+- demonstrate how to compile the Rust code
+- demonstrate errors in Rust
 
+<!--
+always use `--strip` and `--release` when building your Rust code for deployment. 
+This will strip out all unnecessary information and make the binary smaller and faster.
+Don't use debug unless you're debugging. It makes the bigger and slower
+
+note that AWS SAM normally caches artifacts when you're building your lambda
+However AWS Sam won't cache the changes when you're building your rust code 
+-->
 
 ---
-# The Results
+# The Results: Cost
 
-insert analysis of K6 tests here
+**Confession**: I could not achieve the 8 - 10x improvement that others have 
+written about. I beleive it's because my Rust code is not as optimised as it 
+could be. Lets call it an opportunity for improvement
+
+However, I did achieve 3-4x improvement in cost. This is still significant
+
+let's look at costs first, because for most of you i expect that's the most interesting
+
+---
+
+![Cost Comparison](./../data/cost_comparison_2.png)
+
+---
+
+| Language | Time | Cost          | Comparison                       |
+|----------|------|---------------|----------------------------------|
+| Rust     | 5ms  | $0.0000000105 |                                  |
+| Python   | 23ms | $0.0000000210 | 360% slower. 357% more expensive |
+
+For 100m lambda invocations:
+- Rust: $1.05
+- Python: $4.80
+
+---
+# Results: latency
+
+![Latency COmparison](./../data/latency_comparison.png)
+
+<!--
+Personally, I find this the most exciting part. You can see that there is absolutely no change in the latency regardless of the amount of memory allocated
+-->
+
+---
+# Cold Start Comparison
+
+![Cold Start Comparison](./../data/cold_start_comparison.png)
+
+<!--
+I was surprised to see that in this case I did achieve the kind of performance differential that I'd expected
+-->
 
 ---
 
 # The Experience
-I've found that 
+I think that the developer experience is important to mention. I've found that
 - Rust is harder to learn and write than Python.
 - Rust is significantly more verbose than Python.
 - Rust throws a LOT more errors during development, 
 - the frustration is eased somewhat by the excellent messages the compiler provides.
 - the size of the Rust zip file is substantially smaller than the Python equivalent
 
+- Rust is apparently very popular
+- However there are not many Rust developers. This seems odd
+- Rust has a really steep learning curve. 55% of Developers who start learning Rust give up due to the difficulty
+- Rust is not as mature as Python
+
+<!--
+Experienced developers apparently take 6 months to become productive in Rust. I think that's optimistic. I'm at 6 months and i don't consider myself productive yet. The Rust 
+  community
+
+Rust doesn't have as many libraries and frameworks. The shortage of solutions to be found online used to be a problem but I think its improved a lot in the last 12 months.
+
+LLMs have help IMMENSELY.
+
+I've found its a lot  hard to to start with a blank file in Rust and build from scratch. If you already have a working program in Python its a lot easier (IMHO) to then migrate to Rust. 
+-->
+
 ---
 
 # Conclusions
+- Rust delivers a massive improvement in performance, along with the other 
+  oft touted benefits
 - Rust moves the cost to the development phase.
-- Rust fixes old problems but introduces new ones too.
+- Rust fixes old problems but introduces new ones too, specifically, at the development stage
+- Rust trades costs on AWS for increased development costs
+- There is a compromise solution which we'll come to
 
 ---
 
@@ -210,27 +287,6 @@ This approach makes it possible to write performance-critical components inRust,
 
 -->
 
----
-
-# Some issues worth noting:
-- Rust is apparently very popular
-- However there are not many Rust developers. This seems odd
-- Rust has a really steep learning curve. 55% of Developers who start learning Rust give up due to the difficulty
-- Rust is not as mature as Python
-
-<!--
-Experienced developers apparently take 6 months to become productive in Rust. I think that's optimistic. I'm at 6 months and i don't consider myself productive yet. The Rust 
-  community
-
-Rust doesn't have as many libraries and frameworks. The shortage of solutions to be found online used to be a problem but I think its improved a lot in the last 12 months.
-
-LLMs have help IMMENSELY.
-
-If you already have a working program in Python its a lot easier (IMHO) to then migrate to Rust. I've found its a lot  hard to to start with a blank file in Rust and build from scratch.
--->
-
----
-
 # Why choose Rust over GO?
 Overall, both languages are meant for many of the same purposes, and they both attempted to solve the same problem: In a C++ code base, you end up with 5+ year old code snippets everywhere that everyone's too afraid to touch in fear of breaking the entire program. Go sought to tackle this problem by making a language simple (even at the cost of removing practical abstractions) and easy to understand. Rust tackled this problem by retaining practical abstractions and ensuring the code's safe.
 
@@ -244,17 +300,22 @@ The Rust philosophy is that you're willing to
 ---
 
 # Conclusions
-- I rather like Rust and plan to continue learning and building projects with it. 
+- I like Rust and plan to continue learning and building projects with it. 
 - However I don't see it as a replacement for Python, rather perhaps as a compliment to it. I have this idea in my head: "Develop in Python, Deploy in Rust"
-- My next task is to build a full ML pipeline in Rust, including serverless inference. I'm going to use Candle[]() and the Rust SDK for AWS. If people are interested, I'd love to sure to share my project with you.
+- My next task is to build a full ML pipeline in Rust, including serverless inference. I'm going to use [Candle](https://github.com/huggingface/candle) and the Rust SDK for AWS. If people are interested, I'd love to sure to share my project with you.
+
+---
+
+# Acknowledgements
+- a big thank you to Alan Blockley for coaching me in preparation for this presentation]
+- Also a big shout-out to Illya Kavaliou from mantel Group. He runs the serverless group and his recent presentation was an inspiration for this.
 
 ---
 
 # References
-- [Rust Programming Language](https://www.rust-lang.org/)
-- - **Lambda vs EC2 Comparison** by [Illya Kavaliou](https://github.com/ikavaliou-mg/lambda-ec2-ecs-comparison/tree/main)
+- **Rust Home** [Rust Programming Language](https://www.rust-lang.org/)
+- **Lambda vs EC2 Comparison** by [Illya Kavaliou](https://github.com/ikavaliou-mg/lambda-ec2-ecs-comparison/tree/main)
 - **Rustifying Serverless** by [Efi Merdler-Kravitz](https://www.youtube.com/watch?v=Mdh_2PXe9i8)
-- 
-
-
+- **Sustainability with Rust** [AWS Blog](https://aws.amazon.com/blogs/opensource/sustainability-with-rust/)
+- **Why AWS is the Best Place to Run Rust** [AWS Blog](https://aws.amazon.com/blogs/devops/why-aws-is-the-best-place-to-run-rust/)
 ---
