@@ -2,6 +2,7 @@
 marp: true
 theme: Night
 paginate: true
+backgroundSize: contain
 ---
 
 # Introduction
@@ -63,6 +64,7 @@ Concurrency:
 
 ![Compiled vs Interpreted](./../data/lambda_screenshot.png)
 
+---
 
 # Why is AWS investing in Rust?
 - Memory Safety
@@ -147,10 +149,6 @@ Its intended to be a simple example that we can replicate easily
 
 [K6](https://k6.io/) is a free performance testing tool
 
-The choice of **K6** as a load testing method was inspired by a presentation i 
-saw earlier this year at the Serverless meetup. I thought it was a great idea. 
-Why reinvent the wheel?
-
 ---
 # The Code
 
@@ -181,6 +179,8 @@ let's look at costs first, because for most of you i expect that's the most inte
 
 ---
 
+### Cost comparison
+
 ![Cost Comparison](./../data/cost_comparison_2.png)
 
 ---
@@ -195,7 +195,7 @@ For 100m lambda invocations:
 - Python: $4.80
 
 ---
-# Results: latency
+### Results: latency
 
 ![Latency COmparison](./../data/latency_comparison.png)
 
@@ -221,10 +221,7 @@ I think that the developer experience is important to mention. I've found that
 - Rust throws a LOT more errors during development, 
 - the frustration is eased somewhat by the excellent messages the compiler provides.
 - the size of the Rust zip file is substantially smaller than the Python equivalent
-
-- Rust is apparently very popular
-- However there are not many Rust developers. This seems odd
-- Rust has a really steep learning curve. 55% of Developers who start learning Rust give up due to the difficulty
+- Rust is apparently very popular, but there are not many Rust developers. This seems odd.
 - Rust is not as mature as Python
 
 <!--
@@ -287,8 +284,13 @@ This approach makes it possible to write performance-critical components inRust,
 
 -->
 
+---
+
 # Why choose Rust over GO?
-Overall, both languages are meant for many of the same purposes, and they both attempted to solve the same problem: In a C++ code base, you end up with 5+ year old code snippets everywhere that everyone's too afraid to touch in fear of breaking the entire program. Go sought to tackle this problem by making a language simple (even at the cost of removing practical abstractions) and easy to understand. Rust tackled this problem by retaining practical abstractions and ensuring the code's safe.
+Overall, both languages are meant for many of the same purposes, and they both 
+attempted to solve the same problem: In a C++ code base, you end up with 5+ 
+year old code snippets everywhere that everyone's too afraid to touch in fear 
+of breaking the entire program.
 
 Go strives to distance itself from complexity -- code in Go is best seen as "composition from simple, easy to understand pieces," so that anyone approaching the code base has a chance to work on it.
 
@@ -307,8 +309,10 @@ The Rust philosophy is that you're willing to
 ---
 
 # Acknowledgements
-- a big thank you to Alan Blockley for coaching me in preparation for this presentation]
-- Also a big shout-out to Illya Kavaliou from mantel Group. He runs the serverless group and his recent presentation was an inspiration for this.
+- a big thank you to Alan Blockley for coaching me in preparation for this presentation
+- Also a big thank you to Illya Kavaliou from mantel Group. He runs the 
+  serverless group and his recent presentation was an inspiration for this 
+  experiment.
 
 ---
 
@@ -319,3 +323,10 @@ The Rust philosophy is that you're willing to
 - **Sustainability with Rust** [AWS Blog](https://aws.amazon.com/blogs/opensource/sustainability-with-rust/)
 - **Why AWS is the Best Place to Run Rust** [AWS Blog](https://aws.amazon.com/blogs/devops/why-aws-is-the-best-place-to-run-rust/)
 ---
+
+# GitHub repo
+
+AWS Presentation https://github.com/mkingopng/AWS_presentation)
+
+Please feel free to contact me on [LinkedIn](https://www.linkedin.com/feed/) or 
+GitHub if you have any questions or would like to collaborate on a project
