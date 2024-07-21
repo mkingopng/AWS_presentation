@@ -60,9 +60,9 @@ Concurrency:
 
 ---
 
-# visualising the difference between compiled and interpreted languages
+# Visualising the difference between compiled and interpreted languages
 
-![Compiled vs Interpreted](./../data/lambda_screenshot.png)
+![Compiled vs Interpreted](./../images/lambda_screenshot.png)
 
 ---
 
@@ -170,10 +170,10 @@ However AWS Sam won't cache the changes when you're building your rust code
 # The Results: Cost
 
 **Confession**: I could not achieve the 8 - 10x improvement that others have 
-written about. I beleive it's because my Rust code is not as optimised as it 
+written about. I believe it's because my Rust code is not as optimised as it 
 could be. Lets call it an opportunity for improvement
 
-However, I did achieve 3-4x improvement in cost. This is still significant
+However, I did achieve 3-4x improvement in cost. This is still significant, but a little disappointing
 
 let's look at costs first, because for most of you i expect that's the most interesting
 
@@ -181,7 +181,7 @@ let's look at costs first, because for most of you i expect that's the most inte
 
 ### Cost comparison
 
-![Cost Comparison](./../data/cost_comparison_2.png)
+![Cost Comparison](./../images/cost_comparison_2.png)
 
 ---
 
@@ -197,7 +197,7 @@ For 100m lambda invocations:
 ---
 ### Results: latency
 
-![Latency COmparison](./../data/latency_comparison.png)
+![Latency COmparison](./../images/latency_comparison.png)
 
 <!--
 Personally, I find this the most exciting part. You can see that there is absolutely no change in the latency regardless of the amount of memory allocated
@@ -206,7 +206,7 @@ Personally, I find this the most exciting part. You can see that there is absolu
 ---
 # Cold Start Comparison
 
-![Cold Start Comparison](./../data/cold_start_comparison.png)
+![Cold Start Comparison](./../images/cold_start_comparison.png)
 
 <!--
 I was surprised to see that in this case I did achieve the kind of performance differential that I'd expected
@@ -326,7 +326,10 @@ The Rust philosophy is that you're willing to
 
 # GitHub repo
 
-AWS Presentation https://github.com/mkingopng/AWS_presentation)
+![GitHub repo](./../images/QR_code.png)
+---
+
+# Thank you for your attention
 
 Please feel free to contact me on [LinkedIn](https://www.linkedin.com/feed/) or 
 GitHub if you have any questions or would like to collaborate on a project
